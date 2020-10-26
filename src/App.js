@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 class App extends React.Component {
 
@@ -10,8 +9,8 @@ class App extends React.Component {
       quoteText: '',
       quoteAuthor: ''
     }
-    this.getQuote=this.getQuote.bind(this);
-    this.getNewQuote=this.getNewQuote.bind(this);
+    this.getQuote = this.getQuote.bind(this);
+    this.getNewQuote = this.getNewQuote.bind(this);
   }
 
   componentDidMount() {
@@ -23,37 +22,51 @@ class App extends React.Component {
   }
 
   getQuote() {
-  fetch('https://type.fit/api/quotes')
-    .then(response => response.json())
-    .then(data => {
-      let quotesArr = data;
-      console.log(quotesArr.length);
-      const randomNum = Math.floor(Math.random() * quotesArr.length);
-      console.log(randomNum)
-      this.setState({
-        quoteText: quotesArr[randomNum].text,
-        quoteAuthor: quotesArr[randomNum].author
+    fetch('https://type.fit/api/quotes')
+      .then(response => response.json())
+      .then(data => {
+        let quotesArr = data;
+        console.log(quotesArr.length);
+        const randomNum = Math.floor(Math.random() * quotesArr.length);
+        console.log(randomNum)
+        this.setState({
+          quoteText: quotesArr[randomNum].text,
+          quoteAuthor: quotesArr[randomNum].author
+        });
       });
-    });
   }
 
-  render () {
+  render() {
 
-  return (
-    <div className="App" id="quote-box">
-      <div id="text">
-        {this.state.quoteText}
-      </div>
-      <div id="author">
-        {this.state.author}
-      </div>
-      <button id="new-quote" onClick={this.getNewQuote}>New Quote</button>
-      <a id="tweet-quote" href="#">
+    return (
+      <div className="App container" id="quote-box">
+        <div className="card w-75">
+          <blockquote className="blockquote">
+          <div className="card-body">
+            
+            <div id="text">
+            <p>
+              {this.state.quoteText}
+            </p>
+          </div>
+          </div>
+          <div className="card-footer">
+            <footer className="blockquote-footer" id="author">
+            {this.state.quoteAuthor}
+            <button id="new-quote" onClick={this.getNewQuote}>New Quote</button>
+          <a id="tweet-quote" href="#">
+            
+          </a>
+          </footer>
+          </div>
+          </blockquote>
+          
+          
+        </div>
 
-      </a>
-    </div>
-  );
-}
+      </div>
+    );
+  }
 }
 
 export default App;
