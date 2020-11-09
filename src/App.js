@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class App extends React.Component {
 
   constructor(props) {
@@ -40,28 +41,31 @@ class App extends React.Component {
 
     return (
       <div className="App container" id="quote-box">
-        <div className="card w-75">
-          <blockquote className="blockquote">
+        <div className="card w-75 my-3">
+
           <div className="card-body">
-            
-            <div id="text">
-            <p>
-              {this.state.quoteText}
-            </p>
-          </div>
+            <blockquote className="blockquote mb-0">
+              <div id="text">
+                <p>
+                  "{this.state.quoteText}"
+                </p>
+              </div>
+              <footer className="blockquote-footer float-right" id="author">
+                {this.state.quoteAuthor}
+              </footer>
+            </blockquote>
           </div>
           <div className="card-footer">
-            <footer className="blockquote-footer" id="author">
-            {this.state.quoteAuthor}
-            <button id="new-quote" onClick={this.getNewQuote}>New Quote</button>
-          <a id="tweet-quote" href="#">
-            
-          </a>
-          </footer>
+
+            <button id="new-quote" className="btn btn-primary float-left mr-3" onClick={this.getNewQuote}>New Quote</button>
+            <a className="float-left" id="tweet-quote" href="#">
+              <i className="fab fa-twitter btn btn-primary"></i>
+            </a>
+
           </div>
-          </blockquote>
-          
-          
+
+
+
         </div>
 
       </div>
